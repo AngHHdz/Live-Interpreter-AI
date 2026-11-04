@@ -1,4 +1,4 @@
-const APP_HTML = String.raw\`<!doctype html>
+const APP_HTML = String.raw`<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -92,7 +92,7 @@ fetch('/api/health').then(r=>r.json()).then(d=>{if(d.configured)setStatus('Confi
 window.addEventListener('beforeunload',()=>stop(false));
 })();
 </script>
-</body></html>\`;
+</body></html>`;
 
 const MANIFEST = {
   name: "Live Interpreter AI",
@@ -104,7 +104,7 @@ const MANIFEST = {
   description: "Interpretación de voz en tiempo real al español."
 };
 
-const SW = \`const CACHE='live-interpreter-shell-v1';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/','/manifest.webmanifest']))));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin||u.pathname.startsWith('/api/'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request).then(r=>r||caches.match('/'))));});\`;
+const SW = `const CACHE='live-interpreter-shell-v1';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/','/manifest.webmanifest']))));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin||u.pathname.startsWith('/api/'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request).then(r=>r||caches.match('/'))));});`;
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
